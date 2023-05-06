@@ -1,5 +1,4 @@
-import {testSQ} from "./projects/poly";
-
+import { testSQ } from "./projects/poly";
 
 import {
   createProgram,
@@ -84,7 +83,6 @@ let initialFeedbackTex,
   seedImageTexture;
 
 function initProject() {
-
   seedImageTexture = loadImageTexture(gl, seed);
   // let initialFeedbackTex = createFeedbackInitialData(1024, 1024);
   initialFeedbackTex = createTexture(gl, null, size.w, size.h);
@@ -92,7 +90,7 @@ function initProject() {
 
   vibeTex = createTexture(gl, null, size.w, size.h);
   vibeFB = createFrameBuffer(gl, vibeTex);
-  
+
   feedbackTex = createTexture(gl, null, size.w, size.h);
   feedbackFB = createFrameBuffer(gl, feedbackTex);
 
@@ -120,7 +118,7 @@ function initProject() {
   p.pos = gl.getAttribLocation(p, "position");
   p.res = gl.getUniformLocation(p, "u_resolution");
   p.time = gl.getUniformLocation(p, "u_time");
-  p.siize= gl.getUniformLocation(p, "u_siize");
+  p.siize = gl.getUniformLocation(p, "u_siize");
   // final params
   final.pos = gl.getAttribLocation(final, "position");
   final.res = gl.getUniformLocation(final, "u_resolution");
@@ -145,22 +143,21 @@ const fShader = testSQ;
 
 let feedbackChannelSwap = Math.random();
 
-let polySides = ["6.0","5.0","4.0"];
-let a  = polySides[index];
+let index = 0;
+let polySides = ["6.0", "5.0", "4.0"];
+let a = polySides[index];
 let siize = 6.0;
 
-document.body.addEventListener("click", function(){
+document.body.addEventListener("click", function () {
   a = polySides[index];
-  index = (index+1)%polySides.length;
+  index = (index + 1) % polySides.length;
   siize = a;
 });
 
- 
-
 //  setInterval(function(){siize = Math.random()},1500); //5000,1500 poly
- setInterval(function(){feedbackChannelSwap = Math.random()},1500);
-
-
+setInterval(function () {
+  feedbackChannelSwap = Math.random();
+}, 1500);
 
 const canvas = document.createElement("canvas");
 document.body.appendChild(canvas);
@@ -300,8 +297,6 @@ const resizeObserver = new ResizeObserver((entries) => {
   }
 });
 
-
-
 resizeObserver.observe(document.documentElement);
 
 const fullscreen = (event) => {
@@ -314,8 +309,6 @@ const fullscreen = (event) => {
 };
 
 document.body.addEventListener("dblclick", fullscreen);
-
-
 
 const keyHandler = (event) => {
   if (event.key === "f") {
