@@ -1,0 +1,24 @@
+{
+  "name": "vibe",
+  "version": "1.0.0",
+  "description": "1. B&W look\r 2. Gamma correction.\r 3. % Rotation variants.\r 4. more dynamics",
+  "main": "main.js",
+  "scripts": {
+    "start": "parcel ./index.html",
+    "build": "parcel build index.html --public-url ./",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Antonmchx/VIBE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Antonmchx/VIBE/issues"
+  },
+  "homepage": "https://github.com/Antonmchx/VIBE#readme",
+  "devDependencies": {
+    "parcel": "^2.8.3"
+  }
+}
