@@ -5,10 +5,7 @@ import {
   createTexture,
   pingPongFramebuffers,
   createFrameBuffer,
-  loadImageTexture,
 } from "./utils";
-
-import seed from "./img/seed0500.png";
 
 const vertexShader = `#version 300 es
   in vec2 position;
@@ -79,11 +76,9 @@ let initialFeedbackTex,
   final,
   feedback,
   positionBuffer,
-  q,
-  seedImageTexture;
+  q;
 
 function initProject() {
-  seedImageTexture = loadImageTexture(gl, seed);
   // let initialFeedbackTex = createFeedbackInitialData(1024, 1024);
   initialFeedbackTex = createTexture(gl, null, size.w, size.h);
   initialFeedbackFB = createFrameBuffer(gl, initialFeedbackTex);
@@ -246,8 +241,6 @@ const tick = () => {
 
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, feedbackPingPong.pingpong.back.tex);
-    gl.activeTexture(gl.TEXTURE1);
-    gl.bindTexture(gl.TEXTURE_2D, seedImageTexture);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 
     feedbackPingPong.swap();
