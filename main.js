@@ -118,7 +118,8 @@ function initProject() {
   p.pos = gl.getAttribLocation(p, "position");
   p.res = gl.getUniformLocation(p, "u_resolution");
   p.time = gl.getUniformLocation(p, "u_time");
-  p.siize = gl.getUniformLocation(p, "u_siize");
+  p.colorShift = gl.getUniformLocation(p, "u_color_shift");
+  p.polygonAdges = gl.getUniformLocation(p, "u_polygone_adges");
   // final params
   final.pos = gl.getAttribLocation(final, "position");
   final.res = gl.getUniformLocation(final, "u_resolution");
@@ -142,19 +143,17 @@ const size = {
 const fShader = testSQ;
 
 let feedbackChannelSwap = Math.random();
+let colorShift = Math.random();
+
+setInterval(function () {
+  colorShift = Math.random();
+}, 1500); //5000,1500 poly
 
 let index = 0;
 let polySides = ["6.0", "5.0", "4.0"];
 let a = polySides[index];
-let siize = 6.0;
+let polygonAdges = 5;
 
-document.body.addEventListener("click", function () {
-  a = polySides[index];
-  index = (index + 1) % polySides.length;
-  siize = a;
-});
-
-//  setInterval(function(){siize = Math.random()},1500); //5000,1500 poly
 setInterval(function () {
   feedbackChannelSwap = Math.random();
 }, 1500);
@@ -211,7 +210,8 @@ const tick = () => {
     gl.uniform1f(p.time, frame * 15.0);
     gl.uniform2f(p.res, size.w, size.h);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    gl.uniform1f(p.siize, siize);
+    gl.uniform1f(p.colorShift, colorShift);
+    gl.uniform1f(p.polygonAdges, polygonAdges);
 
     // feedback render
 
@@ -309,6 +309,12 @@ const fullscreen = (event) => {
 };
 
 document.body.addEventListener("dblclick", fullscreen);
+
+document.body.addEventListener("click", function () {
+  a = polySides[index];
+  index = (index + 1) % polySides.length;
+  polygonAdges = a;
+});
 
 const keyHandler = (event) => {
   if (event.key === "f") {
